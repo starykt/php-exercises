@@ -31,10 +31,59 @@
       <div class="col-12">
         <h1>Exercício 2</h1>
         <div class="card">
+        <div class="card-body">
+          <form action="" method="POST">
+            <div class="form-group">
+              <label for="time1">Digite o 1° time de futebol:</label>
+              <input class="form-control" type="text" name="time1" id="time1" placeholder="Corinthians" required>
+            </div> <br>
+            <div class="form-group">
+              <label for="time2">2° time escolhido:</label>
+              <input class="form-control" type="text" name="time2" id="time2" placeholder="Santos" required>
+            </div> <br>
+            <div class="form-group">
+              <label for="time3">3° time escolhido:</label>
+              <input class="form-control" type="text" name="time3" id="time3" placeholder="Palmeiras" required>
+            </div> <br>
+            <div class="form-group">
+              <label for="time4">4° time escolhido:</label>
+              <input class="form-control" type="text" name="time4" id="time4" placeholder="São Paulo" required>
+            </div> <br>
+            <div class="form-group">
+              <label for="time5">5° time escolhido:</label>
+              <input class="form-control" type="text" name="time5" id="time5" placeholder="Flamengo" required>
+            </div> <br>
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-outline-dark">Armazenar</button>
+            </div> <br>
+          </form>
+
           <?php
           
+          if ($_POST) {
+            $t1 = $_POST['time1'];
+            $t2 = $_POST['time2'];
+            $t3 = $_POST['time3'];
+            $t4 = $_POST['time4'];
+            $t5 = $_POST['time5'];
+
+            $guarda_time = fopen("times.txt", "w+");
+
+            fwrite($guarda_time, $t1 . "\n");
+            fwrite($guarda_time, $t2 . "\n");
+            fwrite($guarda_time, $t3 . "\n");
+            fwrite($guarda_time, $t4 . "\n");
+            fwrite($guarda_time, $t5 . "\n");
+
+            echo "Times escolhidos e armazenados: <br>";
+            if (file_exists("times.txt")) {
+              foreach (file("times.txt") as $line) {
+                echo $line . "<br>";
+              }
+            }
+          }
+
           ?>
-          </form>
         </div>
       </div>
     </div>
